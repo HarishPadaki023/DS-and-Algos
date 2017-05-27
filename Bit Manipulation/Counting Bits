@@ -1,0 +1,22 @@
+/*
+Given a non negative integer number num. 
+For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
+*/
+
+class Solution {
+public:
+    vector<int> countBits(int num) {
+        vector<int> res;
+        int pow = 1;
+        res.push_back(0);
+        for(int i=1;i<=num;i++) {
+            if(i==pow) {
+                res.push_back(1);//res[i] = 1;
+                pow = pow * 2;
+            } else {
+                res.push_back(1 + res[i - pow/2]);
+            }
+        }
+        return res;
+    }
+};
